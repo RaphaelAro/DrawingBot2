@@ -1,12 +1,10 @@
-﻿  main.cpp
-main.cpp(27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-main.cpp(37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-main.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-main.cpp(43): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-main.cpp(80): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-main.cpp(137): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+﻿  GLImage.cpp
+GLImage.cpp(45): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+GLImage.cpp(142): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Generating code
-  All 175 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  3 of 65 functions ( 4.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   DrawingBot2.vcxproj -> C:\Users\rapha\Documents\Visual Studio 2015\Projects\DrawingBot2\x64\Release\DrawingBot2.exe
   DrawingBot2.vcxproj -> C:\Users\rapha\Documents\Visual Studio 2015\Projects\DrawingBot2\x64\Release\DrawingBot2.pdb (Full PDB)

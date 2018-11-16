@@ -125,7 +125,8 @@ int main(int argc, char* argv[]) {
 	std::vector<Line> currentPicture(NUM_LINES);
 	int count = 0;
 
-	//Main Loop
+	/**
+	//Main Loop 
 	do
 	{
 		std::vector<Line> lines = currentPicture;
@@ -175,7 +176,8 @@ int main(int argc, char* argv[]) {
 		count++;
 	} //Check if the ESC key had been pressed or if the window had been closed  
 	while (!glfwWindowShouldClose(window) && probFace < 0.9999);
-
+	*/
+	loadImage("lowRes.bmp");
 
 	printf("Done %d iterations. Saving picture...", count);
 

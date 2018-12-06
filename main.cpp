@@ -4,7 +4,7 @@
 #define WIDTH 512
 #define HEIGHT 512
 
-#define NUM_LINES 5000
+#define NUM_LINES 3000
 
 //Include GLEW  
 #include <glew.h>  
@@ -20,6 +20,7 @@
 
 #include "main.h"
 #include "GLImage.h"
+#include "loss.h"
 
 
 struct Line {
@@ -76,6 +77,9 @@ int main(int argc, char* argv[]) {
 	//Set the error callback  
 	glfwSetErrorCallback(error_callback);
 
+	//Load input Image
+	Image img = loadImage("blume.bmp");
+
 	//Set random seed
 	std::srand(std::time(nullptr));
 
@@ -120,16 +124,17 @@ int main(int argc, char* argv[]) {
 	// Set a background color  
 	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 
-	float probFace = 0.f;
+	float loss = img.height * img.width + 0.f;
+
 	//draw random lines
 	std::vector<Line> currentPicture(NUM_LINES);
 	int count = 0;
 
-	/**
 	//Main Loop 
 	do
 	{
 		std::vector<Line> lines = currentPicture;
+		// change one line randomly
 		lines[(int)(randomFloat() * NUM_LINES)] = Line();
 		//Clear color buffer  
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -161,23 +166,22 @@ int main(int argc, char* argv[]) {
 		//glfwSwapBuffers(window);
 		//Get and organize events, like keyboard and mouse input, window resizing, etc...  
 		glfwPollEvents();
-		//------------------- Everything drawed here, do tensorflow stuff -------------------//
-		
 
+		// Calculate Loss:
+		float newLoss = pixelLoss(pixels, img.pixels, img.height * img.width);
 
 		// Print the results
-		std::cout << "Current prob:";
+		printf("Current loss: %f \t New loss: %f\n", loss, newLoss);
 
 		//Check if new picture was better
-		if (1 > probFace) {
+		if (loss > newLoss) {
 			currentPicture = lines;
-			probFace = 0;
+			loss = newLoss;
 		}
 		count++;
 	} //Check if the ESC key had been pressed or if the window had been closed  
-	while (!glfwWindowShouldClose(window) && probFace < 0.9999);
-	*/
-	loadImage("lowRes.bmp");
+	while (!glfwWindowShouldClose(window) && loss > 3000);
+
 
 	printf("Done %d iterations. Saving picture...", count);
 
